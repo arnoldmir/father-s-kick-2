@@ -1,7 +1,6 @@
 import UIKit
 
 class AnimatedButton: UIButton {
-    var buttonPressed: (() -> Void)?
     var buttonAnimator: UIViewPropertyAnimator?
     
     override func tintColorDidChange() {
@@ -17,11 +16,9 @@ class AnimatedButton: UIButton {
         didSet {
             if isHighlighted {
                 buttonAnimator = UIViewPropertyAnimator(duration: 0.15, curve: .easeOut, animations: {
-                    self.transform = CGAffineTransform(scaleX: 0.93, y: 0.93)
+                    self.transform = .init(scaleX: 0.93, y: 0.93)
                 })
                 buttonAnimator?.startAnimation()
-                
-                buttonPressed?()
             } else {
                 guard let buttonAnimator = buttonAnimator else { return }
                 
